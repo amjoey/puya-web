@@ -29,18 +29,18 @@ export async function getCurrentAdmin(): Promise<Admin | null> {
     .from("admins")
     .select("*")
     .eq("id", user.id)
-    .returns<AdminRow>()
     .maybeSingle();
 
   if (error || !data) {
     return null;
   }
 
+  const row = data as unknown as AdminRow;
   return {
-    id: data.id,
-    email: data.email,
-    role: data.role as Admin["role"],
-    createdAt: data.created_at,
+    id: row.id,
+    email: row.email,
+    role: row.role as Admin["role"],
+    createdAt: row.created_at,
   };
 }
 
