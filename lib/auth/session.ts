@@ -1,5 +1,8 @@
 import { createClient } from "@/lib/supabase/server";
 import type { Admin } from "@/types/admin";
+import type { Database } from "@/types/database.types";
+
+type AdminRow = Database["public"]["Tables"]["admins"]["Row"];
 
 export class UnauthorizedError extends Error {
   constructor() {
@@ -26,6 +29,7 @@ export async function getCurrentAdmin(): Promise<Admin | null> {
     .from("admins")
     .select("*")
     .eq("id", user.id)
+    .returns<AdminRow>()
     .maybeSingle();
 
   if (error || !data) {
