@@ -11,7 +11,8 @@ export async function safeFetch<T>(
 ): Promise<{ data: T; error: boolean }> {
   try {
     return { data: await fetcher(), error: false };
-  } catch {
+  } catch (err) {
+    console.error("[safeFetch] error:", err);
     return { data: fallback, error: true };
   }
 }
