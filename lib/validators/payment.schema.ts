@@ -6,10 +6,10 @@ const MAX_SLIP_SIZE_BYTES = 5 * 1024 * 1024; // 5MB
 export const paymentSlipFileSchema = z
   .instanceof(File)
   .refine((file) => ACCEPTED_SLIP_TYPES.includes(file.type), {
-    message: "Slip must be JPG, PNG, or WEBP",
+    message: "กรุณาอัปโหลดไฟล์รูปภาพ (JPG, PNG หรือ WEBP)",
   })
   .refine((file) => file.size <= MAX_SLIP_SIZE_BYTES, {
-    message: "Slip must be 5MB or smaller",
+    message: "ขนาดไฟล์ต้องไม่เกิน 5MB",
   });
 
 export const paymentUploadSchema = z.object({

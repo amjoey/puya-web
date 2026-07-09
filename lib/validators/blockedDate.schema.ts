@@ -5,8 +5,8 @@ import { z } from "zod";
 // see types/blockedDate.ts.
 export const blockedDateFormSchema = z.object({
   villaId: z.string().uuid().optional().or(z.literal("")),
-  blockedDate: z.string().date(),
-  reason: z.string().trim().max(255).optional().or(z.literal("")),
+  blockedDate: z.string().date("กรุณาเลือกวันที่"),
+  reason: z.string().trim().max(255, "เหตุผลยาวเกินไป").optional().or(z.literal("")),
 });
 
 export type BlockedDateFormInput = z.infer<typeof blockedDateFormSchema>;
