@@ -8,8 +8,8 @@ const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").r
 export const SEO = {
   siteUrl: SITE_URL,
   siteName: "PUYA Beach Villa",
-  defaultTitle: "PUYA Beach Villa | Private Beachfront Pool Villa Rental",
+  defaultTitle: "พูลวิลล่าเทพา สะกอม สงขลา | PUYA Beach Villa รับ 15 คน จองตรง",
   defaultDescription:
-    "Book a private beachfront pool villa for up to 15 guests at PUYA Beach Villa. Two luxury villas with private pools, BBQ decks, and direct beach access.",
+    "พูลวิลล่าริมทะเลส่วนตัว 2 หลัง โซนเทพา-สะกอม สงขลา รับได้ถึง 15 คน/หลัง เหมาะกับครอบครัวและหมู่คณะ Muslim-friendly ใกล้ปัตตานี ยะลา นราธิวาส จองตรงเริ่ม 6,900 บาท",
   defaultOgImage: "/demo/hero.svg",
 } as const;

@@ -9,14 +9,14 @@ import { getActiveVillas } from "@/repositories/villa.repository";
 import { listVillaImagesByVilla } from "@/repositories/villaImage.repository";
 
 export const metadata: Metadata = {
-  title: "วิลล่าของเรา | PUYA Beach Villa",
+  title: "พูลวิลล่าเทพา สะกอม สงขลา 2 หลัง รับ 15 คน | PUYA Beach Villa",
   description:
-    "วิลล่าริมชายหาดส่วนตัวพร้อมสระว่ายน้ำ 2 หลัง รับได้ถึง 15 คนต่อหลัง พร้อมดาดฟ้าบาร์บีคิวและการเข้าถึงชายหาดโดยตรง",
+    "พูลวิลล่าริมทะเลส่วนตัว 2 หลัง โซนเทพา-สะกอม สงขลา เหมาะสำหรับครอบครัวและหมู่คณะ รับได้ถึง 15 คนต่อหลัง สระว่ายน้ำส่วนตัว ดาดฟ้าบาร์บีคิว Muslim-friendly จองตรงเริ่ม 6,900 บาท",
   alternates: { canonical: "/villas" },
   openGraph: {
-    title: "วิลล่าของเรา | PUYA Beach Villa",
+    title: "พูลวิลล่าเทพา สะกอม สงขลา 2 หลัง รับ 15 คน | PUYA Beach Villa",
     description:
-      "วิลล่าริมชายหาดส่วนตัวพร้อมสระว่ายน้ำ 2 หลัง รับได้ถึง 15 คนต่อหลัง",
+      "พูลวิลล่าริมทะเลส่วนตัว 2 หลัง โซนเทพา-สะกอม สงขลา เหมาะสำหรับครอบครัวและหมู่คณะ รับได้ถึง 15 คนต่อหลัง Muslim-friendly",
     images: ["/demo/hero.svg"],
     type: "website",
   },
@@ -37,9 +37,12 @@ export default async function VillasPage() {
   return (
     <main className={cn(CONTAINER_PADDING, "py-8 tablet:py-12")}>
       <div className="mx-auto max-w-6xl">
-        <h1 className="text-h2 font-bold text-foreground">วิลล่าของเรา</h1>
+        <h1 className="text-h2 font-bold text-foreground">
+          พูลวิลล่าริมทะเล เทพา–สะกอม สงขลา
+        </h1>
         <p className="mt-2 text-body text-muted-foreground">
-          วิลล่าริมชายหาดส่วนตัวพร้อมสระว่ายน้ำ 2 หลัง รับได้ถึง 15 คนต่อหลัง
+          พูลวิลล่าส่วนตัว 2 หลัง เหมาะสำหรับครอบครัวและหมู่คณะ รับได้ถึง 15 คนต่อหลัง
+          พร้อมสระว่ายน้ำส่วนตัว ดาดฟ้าบาร์บีคิว ติดทะเล รองรับนักท่องเที่ยวมุสลิม
         </p>
 
         {loadError ? (

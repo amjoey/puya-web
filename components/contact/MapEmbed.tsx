@@ -4,7 +4,8 @@ import { CONTACT_INFO } from "@/lib/constants/contact";
 // Page. Swap for an API-key-based embed (GOOGLE_MAPS_API_KEY) if richer
 // interaction (custom markers, directions) is needed later.
 export function MapEmbed() {
-  const query = encodeURIComponent(CONTACT_INFO.address);
+  const { latitude, longitude } = CONTACT_INFO.geo;
+  const query = encodeURIComponent(`${latitude},${longitude}`);
 
   return (
     <iframe
