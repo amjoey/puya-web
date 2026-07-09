@@ -21,6 +21,8 @@ import { listApprovedReviewsByVilla } from "@/repositories/review.repository";
 import { getActiveVillas, getVillaBySlug } from "@/repositories/villa.repository";
 import { listVillaImagesByVilla } from "@/repositories/villaImage.repository";
 
+export const dynamic = "force-dynamic";
+
 interface VillaDetailPageProps {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ month?: string }>;
