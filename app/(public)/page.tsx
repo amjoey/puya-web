@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { CombinedVillaSection } from "@/components/home/CombinedVillaSection";
 import { ContactSection } from "@/components/home/ContactSection";
 import { FacilitiesSection } from "@/components/home/FacilitiesSection";
 import { HeroSection } from "@/components/home/HeroSection";
@@ -60,6 +61,7 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <QuickBookBar />
+        <CombinedVillaSection />
         <VillasSection />
         <FacilitiesSection />
         <ReviewsPreview />
