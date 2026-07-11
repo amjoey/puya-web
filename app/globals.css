@@ -79,6 +79,7 @@
   --color-aqua: #16b5ad;
   --color-aqua-deep: #0e948d;
   --color-aqua-soft: #dcf1ef;
+  --color-aqua-light: #6fe4dc; /* accent word on dark grounds (hero/booking) */
   --color-amber: #e3a24b;
   --color-sky: #7fb4ce;
   --color-ink: #26343a;
@@ -90,6 +91,7 @@
 
   --radius-2xl: 20px;
   --shadow-soft: 0 20px 50px -26px rgba(38, 52, 58, 0.28);
+  --shadow-aqua: 0 10px 22px -12px rgba(22, 181, 173, 0.8); /* CTA glow */
 }
 
 /* ============================================

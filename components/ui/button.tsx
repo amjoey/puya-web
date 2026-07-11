@@ -11,16 +11,16 @@ import { cn } from "@/lib/utils/cn";
 //   secondary = quieter fill on light surfaces
 //   outline   = hairline button on light backgrounds
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aqua focus-visible:ring-offset-2",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aqua focus-visible:ring-offset-2",
   {
     variants: {
       variant: {
         default:
-          "bg-aqua text-white shadow-soft hover:bg-aqua-deep active:bg-aqua-deep",
+          "bg-aqua text-white shadow-aqua hover:bg-aqua-deep hover:-translate-y-0.5 active:translate-y-0 active:bg-aqua-deep",
         secondary:
           "bg-mist text-ink hover:bg-line active:bg-line",
         outline:
-          "border border-line bg-transparent text-ink hover:bg-mist active:bg-mist",
+          "border border-line bg-transparent text-ink hover:border-aqua hover:text-aqua active:border-aqua",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90 active:bg-destructive/90",
         ghost: "text-ink hover:bg-mist active:bg-mist",

@@ -4,6 +4,7 @@ import { ContactSection } from "@/components/home/ContactSection";
 import { FacilitiesSection } from "@/components/home/FacilitiesSection";
 import { HeroSection } from "@/components/home/HeroSection";
 import { PromotionsPreview } from "@/components/home/PromotionsPreview";
+import { QuickBookBar } from "@/components/home/QuickBookBar";
 import { ReviewsPreview } from "@/components/home/ReviewsPreview";
 import { VillasSection } from "@/components/home/VillasSection";
 import { CONTACT_INFO } from "@/lib/constants/contact";
@@ -58,6 +59,7 @@ export default function HomePage() {
       />
       <main>
         <HeroSection />
+        <QuickBookBar />
         <VillasSection />
         <FacilitiesSection />
         <ReviewsPreview />
