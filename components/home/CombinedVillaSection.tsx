@@ -30,7 +30,7 @@ export function CombinedVillaSection() {
           </div>
 
           <div>
-            <Eyebrow className="text-aqua-deep">จุดต่างที่คู่แข่งไม่มี</Eyebrow>
+            <Eyebrow className="text-aqua-deep">จองได้ทั้งสองหลังในครั้งเดียว</Eyebrow>
             <h2 className="mt-4 text-balance text-3xl font-medium text-ink tablet:text-4xl">
               รวม 2 วิลล่า เป็นหลังเดียว
             </h2>
