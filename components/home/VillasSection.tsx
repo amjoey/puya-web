@@ -1,4 +1,4 @@
-import { SectionTitle } from "@/components/common/SectionTitle";
+import { SectionHeader } from "@/components/common/SectionHeader";
 import { VillaCard } from "@/components/villa/VillaCard";
 import { CONTAINER_PADDING, SECTION_SPACING } from "@/lib/constants/spacing";
 import { demoVillas } from "@/lib/demo/homeContent";
@@ -26,9 +26,10 @@ export async function VillasSection() {
   return (
     <section id="villas" className={cn(SECTION_SPACING, CONTAINER_PADDING)}>
       <div className="mx-auto max-w-6xl">
-        <SectionTitle
+        <SectionHeader
+          eyebrow="ให้เลือก 2 หลัง"
           title="วิลล่าของเรา"
-          subtitle="วิลล่าริมชายหาดส่วนตัวพร้อมสระว่ายน้ำ 2 หลัง รับได้ถึง 15 คนต่อหลัง"
+          subtitle="สองหลังส่วนตัวริมทะเล แต่ละหลังมีสระ สไลเดอร์ และระเบียงชั้น 2 วิวทะเล รับได้ถึง 15 คนต่อหลัง"
         />
         <div className="grid grid-cols-1 gap-6 tablet:grid-cols-2 tablet:gap-8">
           {villaCards.map(({ villa, imageUrl }) => (
