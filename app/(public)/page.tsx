@@ -62,11 +62,11 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <QuickBookBar />
-        <CombinedVillaSection />
+        <VillasSection />
         <SeaFeatureSection />
         <FacilitiesSection />
         <GallerySection />
-        <VillasSection />
+        <CombinedVillaSection />
         <BookingStepsSection />
         <FinalCtaSection />
       </main>
