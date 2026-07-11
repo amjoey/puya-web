@@ -16,9 +16,9 @@ export function BookingStepper({ currentStep }: { currentStep: number }) {
             <span
               className={cn(
                 "flex size-8 items-center justify-center rounded-full text-caption font-semibold",
-                isActive && "bg-primary text-primary-foreground",
-                isComplete && "bg-success text-success-foreground",
-                !isActive && !isComplete && "bg-secondary text-muted-foreground",
+                isActive && "bg-aqua text-white",
+                isComplete && "bg-aqua-deep text-white",
+                !isActive && !isComplete && "bg-mist text-ink-soft",
               )}
               aria-current={isActive ? "step" : undefined}
             >
@@ -27,7 +27,7 @@ export function BookingStepper({ currentStep }: { currentStep: number }) {
             <span
               className={cn(
                 "text-caption",
-                isActive ? "font-medium text-foreground" : "text-muted-foreground",
+                isActive ? "font-medium text-ink" : "text-ink-soft",
               )}
             >
               {label}

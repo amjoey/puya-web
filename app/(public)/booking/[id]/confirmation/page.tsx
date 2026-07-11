@@ -71,8 +71,8 @@ export default async function BookingConfirmationPage({
       <div className="mx-auto flex max-w-xl flex-col gap-6">
         <div className="flex flex-col items-center gap-2 text-center">
           <CheckCircle2 className="size-12 text-success" aria-hidden="true" />
-          <h1 className="text-h2 font-bold text-foreground">ได้รับการจองแล้ว</h1>
-          <p className="text-body text-muted-foreground">
+          <h1 className="text-3xl font-medium text-ink tablet:text-4xl">ได้รับการจองแล้ว</h1>
+          <p className="text-body text-ink-soft">
             {isPaid
               ? "การชำระเงินได้รับการยืนยัน และการจองของคุณได้รับการยืนยันแล้ว"
               : "เราได้สำรองวันที่ของคุณแล้ว กรุณาชำระเงินเพื่อยืนยันการจอง"}
@@ -82,23 +82,23 @@ export default async function BookingConfirmationPage({
         <Card>
           <CardContent className="flex flex-col gap-2 text-body">
             <p>
-              <span className="font-semibold text-foreground">วิลล่า:</span>{" "}
+              <span className="font-semibold text-ink">วิลล่า:</span>{" "}
               {villa?.name ?? "ไม่ทราบชื่อวิลล่า"}
             </p>
             <p>
-              <span className="font-semibold text-foreground">วันที่:</span> {booking.checkIn} –{" "}
+              <span className="font-semibold text-ink">วันที่:</span> {booking.checkIn} –{" "}
               {booking.checkOut} ({booking.totalNights} คืน)
             </p>
             <p>
-              <span className="font-semibold text-foreground">จำนวนผู้เข้าพัก:</span>{" "}
+              <span className="font-semibold text-ink">จำนวนผู้เข้าพัก:</span>{" "}
               {booking.guestCount}
             </p>
             <p>
-              <span className="font-semibold text-foreground">ยอดรวม:</span>{" "}
+              <span className="font-semibold text-ink">ยอดรวม:</span>{" "}
               {formatTHB(booking.totalPrice)}
             </p>
             <p>
-              <span className="font-semibold text-foreground">สถานะ:</span>{" "}
+              <span className="font-semibold text-ink">สถานะ:</span>{" "}
               {{
                 pending: "รอดำเนินการ",
                 confirmed: "ยืนยันแล้ว",

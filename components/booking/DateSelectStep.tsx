@@ -43,7 +43,7 @@ export function DateSelectStep({ form, villaId }: DateSelectStepProps) {
 
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="text-h3 font-semibold text-foreground">เลือกวันที่</h2>
+      <h2 className="text-2xl font-medium text-ink">เลือกวันที่</h2>
       <div className="grid grid-cols-1 gap-4 tablet:grid-cols-2">
         <FormField
           control={form.control}

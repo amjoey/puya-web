@@ -68,8 +68,8 @@ export default async function BookingPaymentPage({ params }: BookingPaymentPageP
     <main className={cn(CONTAINER_PADDING, "py-8 tablet:py-12")}>
       <div className="mx-auto flex max-w-xl flex-col gap-8">
         <div>
-          <h1 className="text-h2 font-bold text-foreground">ชำระเงิน</h1>
-          <p className="mt-2 text-body text-muted-foreground">
+          <h1 className="text-3xl font-medium text-ink tablet:text-4xl">ชำระเงิน</h1>
+          <p className="mt-2 text-body text-ink-soft">
             {villa?.name ?? "วิลล่าของคุณ"} · {booking.checkIn} – {booking.checkOut}
           </p>
         </div>

@@ -21,7 +21,7 @@ interface GuestInfoFormProps {
 export function GuestInfoForm({ form, maxGuests }: GuestInfoFormProps) {
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="text-h3 font-semibold text-foreground">ข้อมูลผู้เข้าพัก</h2>
+      <h2 className="text-2xl font-medium text-ink">ข้อมูลผู้เข้าพัก</h2>
       <FormField
         control={form.control}
         name="customerName"
@@ -93,7 +93,7 @@ export function GuestInfoForm({ form, maxGuests }: GuestInfoFormProps) {
                 />
               </FormControl>
               {maxGuests && (
-                <p className="text-caption text-muted-foreground">
+                <p className="text-caption text-ink-soft">
                   วิลล่านี้รับได้สูงสุด {maxGuests} คน
                 </p>
               )}

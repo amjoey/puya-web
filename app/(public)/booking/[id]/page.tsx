@@ -40,7 +40,7 @@ export default async function BookingPage({ params }: BookingPageProps) {
   if (villas.length === 0) {
     return (
       <main className={cn(CONTAINER_PADDING, "py-12 text-center")}>
-        <p className="text-body text-muted-foreground">
+        <p className="text-body text-ink-soft">
           ไม่มีวิลล่าให้จองในขณะนี้
         </p>
       </main>
@@ -52,7 +52,7 @@ export default async function BookingPage({ params }: BookingPageProps) {
   return (
     <main className={cn(CONTAINER_PADDING, "py-8 tablet:py-12")}>
       <div className="mx-auto max-w-2xl">
-        <h1 className="text-h2 font-bold text-foreground">จองที่พัก</h1>
+        <h1 className="text-3xl font-medium text-ink tablet:text-4xl">จองที่พัก</h1>
         <div className="mt-8">
           <BookingWizard villas={villas} initialVillaId={initialVilla.id} />
         </div>

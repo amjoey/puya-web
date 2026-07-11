@@ -22,43 +22,43 @@ export function BookingSummary({ villa, data }: BookingSummaryProps) {
 
   return (
     <div>
-      <h2 className="text-h3 font-semibold text-foreground">สรุปการจอง</h2>
-      <div className="mt-4 rounded-xl border border-border bg-secondary p-4">
+      <h2 className="text-2xl font-medium text-ink">สรุปการจอง</h2>
+      <div className="mt-4 rounded-2xl border border-line bg-paper p-4">
         <dl className="flex flex-col gap-2 text-body">
           <div className="flex justify-between">
-            <dt className="text-muted-foreground">วิลล่า</dt>
-            <dd className="font-medium text-foreground">{villa.name}</dd>
+            <dt className="text-ink-soft">วิลล่า</dt>
+            <dd className="font-medium text-ink">{villa.name}</dd>
           </div>
           <div className="flex justify-between">
-            <dt className="text-muted-foreground">วันเช็คอิน</dt>
-            <dd className="font-medium text-foreground">{data.checkIn}</dd>
+            <dt className="text-ink-soft">วันเช็คอิน</dt>
+            <dd className="font-medium text-ink">{data.checkIn}</dd>
           </div>
           <div className="flex justify-between">
-            <dt className="text-muted-foreground">วันเช็คเอาท์</dt>
-            <dd className="font-medium text-foreground">{data.checkOut}</dd>
+            <dt className="text-ink-soft">วันเช็คเอาท์</dt>
+            <dd className="font-medium text-ink">{data.checkOut}</dd>
           </div>
           <div className="flex justify-between">
-            <dt className="text-muted-foreground">จำนวนคืน</dt>
-            <dd className="font-medium text-foreground">{breakdown.totalNights}</dd>
+            <dt className="text-ink-soft">จำนวนคืน</dt>
+            <dd className="font-medium text-ink">{breakdown.totalNights}</dd>
           </div>
           <div className="flex justify-between">
-            <dt className="text-muted-foreground">ชื่อผู้จอง</dt>
-            <dd className="font-medium text-foreground">{data.customerName}</dd>
+            <dt className="text-ink-soft">ชื่อผู้จอง</dt>
+            <dd className="font-medium text-ink">{data.customerName}</dd>
           </div>
           <div className="flex items-center justify-between">
-            <dt className="flex items-center gap-1.5 text-muted-foreground">
+            <dt className="flex items-center gap-1.5 text-ink-soft">
               <Users className="size-4" aria-hidden="true" />
               จำนวนผู้เข้าพัก
             </dt>
-            <dd className="font-medium text-foreground">{data.guestCount}</dd>
+            <dd className="font-medium text-ink">{data.guestCount}</dd>
           </div>
-          <div className="mt-2 flex justify-between border-t border-border pt-2 text-h3 font-semibold">
-            <dt className="text-foreground">ยอดรวม</dt>
-            <dd className="text-foreground">{formatTHB(breakdown.totalPrice)}</dd>
+          <div className="mt-2 flex justify-between border-t border-line pt-2 text-xl font-semibold">
+            <dt className="text-ink">ยอดรวม</dt>
+            <dd className="text-aqua-deep">{formatTHB(breakdown.totalPrice)}</dd>
           </div>
         </dl>
       </div>
-      <p className="mt-3 text-caption text-muted-foreground">
+      <p className="mt-3 text-caption text-ink-soft">
         การจองจะถูกสร้างในสถานะ &ldquo;รอชำระเงิน&rdquo; คุณจะอัปโหลดสลิป PromptPay ในขั้นตอนถัดไป
       </p>
     </div>

@@ -40,11 +40,11 @@ export function PaymentUpload({ bookingId, alreadyUploaded }: PaymentUploadProps
           required
           className="mt-2"
         />
-        <p className="mt-1 text-caption text-muted-foreground">ไฟล์ JPG, PNG หรือ WEBP ขนาดไม่เกิน 5MB</p>
+        <p className="mt-1 text-caption text-ink-soft">ไฟล์ JPG, PNG หรือ WEBP ขนาดไม่เกิน 5MB</p>
       </div>
 
       {alreadyUploaded && (
-        <p className="text-caption text-muted-foreground">
+        <p className="text-caption text-ink-soft">
           คุณอัปโหลดสลิปสำหรับการจองนี้แล้ว — การอัปโหลดใหม่จะแทนที่สลิปเดิม
         </p>
       )}

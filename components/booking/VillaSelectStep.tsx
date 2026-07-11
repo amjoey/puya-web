@@ -18,7 +18,7 @@ interface VillaSelectStepProps {
 export function VillaSelectStep({ form, villas }: VillaSelectStepProps) {
   return (
     <div>
-      <h2 className="text-h3 font-semibold text-foreground">เลือกวิลล่า</h2>
+      <h2 className="text-2xl font-medium text-ink">เลือกวิลล่า</h2>
       <FormField
         control={form.control}
         name="villaId"
@@ -33,16 +33,16 @@ export function VillaSelectStep({ form, villas }: VillaSelectStepProps) {
                     onClick={() => field.onChange(villa.id)}
                     aria-pressed={field.value === villa.id}
                     className={cn(
-                      "rounded-xl border-2 p-4 text-left transition-colors",
+                      "rounded-2xl border-2 p-4 text-left transition-colors",
                       field.value === villa.id
-                        ? "border-primary bg-primary/5"
-                        : "border-border hover:border-primary/40",
+                        ? "border-aqua bg-aqua-soft/40"
+                        : "border-line hover:border-aqua/50",
                     )}
                   >
-                    <span className="block text-body font-semibold text-foreground">
+                    <span className="block text-body font-semibold text-ink">
                       {villa.name}
                     </span>
-                    <span className="mt-1 block text-caption text-muted-foreground">
+                    <span className="mt-1 block text-caption text-ink-soft">
                       รับได้ถึง {villa.capacity} คน · เริ่มต้น {formatTHB(villa.weekdayPrice)}/คืน
                     </span>
                   </button>
@@ -53,7 +53,7 @@ export function VillaSelectStep({ form, villas }: VillaSelectStepProps) {
           </FormItem>
         )}
       />
-      <p className="mt-3 text-caption text-muted-foreground">
+      <p className="mt-3 text-caption text-ink-soft">
         มีคำถามเกี่ยวกับวิลล่า? โทร {CONTACT_INFO.phone} หรือส่งข้อความทาง LINE
       </p>
     </div>
