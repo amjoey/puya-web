@@ -11,7 +11,7 @@ const STATS = [
   { value: "6", label: "ห้องนอน" },
   { value: "2", label: "สระว่ายน้ำ" },
   { value: "6", label: "ห้องน้ำ" },
-  { value: "18+", label: "ผู้เข้าพัก" },
+  { value: "24+", label: "ผู้เข้าพัก" },
 ] as const;
 
 export function CombinedVillaSection() {
