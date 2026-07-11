@@ -4,6 +4,7 @@ import { BookingStepsSection } from "@/components/home/BookingStepsSection";
 import { CombinedVillaSection } from "@/components/home/CombinedVillaSection";
 import { ContactSection } from "@/components/home/ContactSection";
 import { FacilitiesSection } from "@/components/home/FacilitiesSection";
+import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { GallerySection } from "@/components/home/GallerySection";
 import { HeroSection } from "@/components/home/HeroSection";
 import { QuickBookBar } from "@/components/home/QuickBookBar";
@@ -68,6 +69,7 @@ export default function HomePage() {
         <GallerySection />
         <VillasSection />
         <BookingStepsSection />
+        <FinalCtaSection />
         <ContactSection />
       </main>
     </>
