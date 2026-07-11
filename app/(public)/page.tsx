@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import { BookingStepsSection } from "@/components/home/BookingStepsSection";
 import { CombinedVillaSection } from "@/components/home/CombinedVillaSection";
-import { ContactSection } from "@/components/home/ContactSection";
 import { FacilitiesSection } from "@/components/home/FacilitiesSection";
 import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { GallerySection } from "@/components/home/GallerySection";
@@ -70,7 +69,6 @@ export default function HomePage() {
         <VillasSection />
         <BookingStepsSection />
         <FinalCtaSection />
-        <ContactSection />
       </main>
     </>
   );
