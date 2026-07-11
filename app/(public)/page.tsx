@@ -4,12 +4,9 @@ import { BookingStepsSection } from "@/components/home/BookingStepsSection";
 import { CombinedVillaSection } from "@/components/home/CombinedVillaSection";
 import { ContactSection } from "@/components/home/ContactSection";
 import { FacilitiesSection } from "@/components/home/FacilitiesSection";
-import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { GallerySection } from "@/components/home/GallerySection";
 import { HeroSection } from "@/components/home/HeroSection";
-import { PromotionsPreview } from "@/components/home/PromotionsPreview";
 import { QuickBookBar } from "@/components/home/QuickBookBar";
-import { ReviewsPreview } from "@/components/home/ReviewsPreview";
 import { SeaFeatureSection } from "@/components/home/SeaFeatureSection";
 import { VillasSection } from "@/components/home/VillasSection";
 import { CONTACT_INFO } from "@/lib/constants/contact";
@@ -71,9 +68,6 @@ export default function HomePage() {
         <GallerySection />
         <VillasSection />
         <BookingStepsSection />
-        <ReviewsPreview />
-        <PromotionsPreview />
-        <FinalCtaSection />
         <ContactSection />
       </main>
     </>
