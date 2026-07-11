@@ -12,7 +12,6 @@ import { cn } from "@/lib/utils/cn";
 const FIELDS = [
   { label: "เช็คอิน", value: "เลือกวันที่" },
   { label: "เช็คเอาท์", value: "เลือกวันที่" },
-  { label: "ผู้เข้าพัก", value: "2 ผู้ใหญ่" },
 ] as const;
 
 export function QuickBookBar() {
@@ -23,7 +22,7 @@ export function QuickBookBar() {
         CONTAINER_PADDING,
       )}
     >
-      <div className="grid grid-cols-1 gap-3 rounded-2xl border border-line bg-white p-4 shadow-soft tablet:grid-cols-[1fr_1fr_1fr_auto] tablet:items-end tablet:gap-4 tablet:p-5">
+      <div className="grid grid-cols-1 gap-3 rounded-2xl border border-line bg-white p-4 shadow-soft tablet:grid-cols-[1fr_1fr_auto] tablet:items-end tablet:gap-4 tablet:p-5">
         {FIELDS.map((field) => (
           <Link key={field.label} href="/availability" className="group block">
             <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-ink-soft">
