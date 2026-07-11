@@ -62,6 +62,37 @@
 }
 
 /* ============================================
+   "Sea Minimal" design tokens — see REDESIGN_PLAN.md > Phase 1
+   Single source of truth for the redesign. Values are exact per spec —
+   do not change hex/fonts. (Plan targeted Tailwind v3 tailwind.config.ts;
+   this project is Tailwind v4, so tokens live in @theme instead.)
+
+   NOTE: the spec's secondary-TEXT color (#69797F) is exposed as `ink-soft`,
+   NOT `muted`. The name `muted` is already taken by the existing shadcn
+   SURFACE token used across ~48 files (bg-muted etc.); reusing it would
+   clobber those. Use `text-ink-soft` for secondary text in the redesign.
+   ============================================ */
+@theme {
+  --color-white: #ffffff;
+  --color-paper: #f6f8f8;
+  --color-mist: #ebefef;
+  --color-aqua: #16b5ad;
+  --color-aqua-deep: #0e948d;
+  --color-aqua-soft: #dcf1ef;
+  --color-amber: #e3a24b;
+  --color-sky: #7fb4ce;
+  --color-ink: #26343a;
+  --color-ink-soft: #69797f;
+  --color-line: #e3e9e9;
+
+  --font-display: var(--font-anuphan);
+  --font-body: var(--font-ibm-plex-thai);
+
+  --radius-2xl: 20px;
+  --shadow-soft: 0 20px 50px -26px rgba(38, 52, 58, 0.28);
+}
+
+/* ============================================
    Color system — see UI_UX_SPEC.md > Design System > Colors
    Hex -> HSL channels (no hsl() wrapper, per shadcn convention):
      Primary       #0EA5E9  Primary Hover #0284C7
@@ -103,6 +134,21 @@
   --card-foreground: 222.2 47.4% 11.2%;
   --popover: 0 0% 100%;
   --popover-foreground: 222.2 47.4% 11.2%;
+
+  /* Sea Minimal — plain hex fallbacks for use outside Tailwind utilities.
+     Colliding names (--muted, --radius) are intentionally omitted; they are
+     shadcn HSL-channel / sizing vars and overriding them would break existing
+     components. See @theme block below for the Tailwind color tokens. */
+  --aqua: #16b5ad;
+  --aqua-deep: #0e948d;
+  --aqua-soft: #dcf1ef;
+  --amber: #e3a24b;
+  --sky: #7fb4ce;
+  --ink: #26343a;
+  --ink-soft: #69797f;
+  --paper: #f6f8f8;
+  --line: #e3e9e9;
+  --shadow: 0 20px 50px -26px rgba(38, 52, 58, 0.28);
 }
 
 @layer base {
@@ -111,7 +157,15 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-inter), var(--font-noto-sans-thai), sans-serif;
+    font-family: var(--font-body), sans-serif;
+  }
+  /* Headings use the display font (Anuphan) — see REDESIGN_PLAN.md > Phase 1 */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display), sans-serif;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
   }
 }
 

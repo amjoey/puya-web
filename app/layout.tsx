@@ -1,20 +1,25 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Sans_Thai } from "next/font/google";
+import { Anuphan, IBM_Plex_Sans_Thai } from "next/font/google";
 import "./globals.css";
 
 import { SEO } from "@/lib/constants/seo";
 
-// Typography system fonts — see UI_UX_SPEC.md / PRD.md (Inter + Noto Sans
-// Thai cover Latin + Thai scripts; swap in Geist later if preferred for headings).
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+// Typography — "Sea Minimal" theme, see REDESIGN_PLAN.md > Phase 1.
+// Anuphan (display, light/airy headings) + IBM Plex Sans Thai (body, full
+// Thai support). Exposed as CSS vars and mapped to font-display / font-body
+// Tailwind utilities in globals.css @theme. (next/font vars are named after
+// the font, not the utility, so they don't self-reference the theme token.)
+const display = Anuphan({
+  subsets: ["thai", "latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-anuphan",
   display: "swap",
 });
 
-const notoSansThai = Noto_Sans_Thai({
-  subsets: ["thai"],
-  variable: "--font-noto-sans-thai",
+const body = IBM_Plex_Sans_Thai({
+  subsets: ["thai", "latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-ibm-plex-thai",
   display: "swap",
 });
 
@@ -41,8 +46,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="th" className={`${inter.variable} ${notoSansThai.variable}`}>
-      <body>{children}</body>
+    <html lang="th" className={`${display.variable} ${body.variable}`}>
+      <body className="font-body bg-white text-ink">{children}</body>
     </html>
   );
 }
