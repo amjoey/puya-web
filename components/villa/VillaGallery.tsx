@@ -24,7 +24,7 @@ export function VillaGallery({ images, villaName }: VillaGalleryProps) {
             key={src}
             src={src}
             alt={`${villaName} photo ${index + 1}`}
-            className="aspect-4/3 w-[85%] shrink-0 snap-center rounded-xl object-cover"
+            className="aspect-4/3 w-[85%] shrink-0 snap-center rounded-2xl object-cover"
           />
         ))}
       </div>
@@ -34,7 +34,7 @@ export function VillaGallery({ images, villaName }: VillaGalleryProps) {
         <img
           src={images[activeIndex]}
           alt={`${villaName} photo ${activeIndex + 1}`}
-          className="aspect-16/9 w-full rounded-xl object-cover"
+          className="aspect-16/9 w-full rounded-2xl object-cover"
         />
         <div className="mt-3 flex gap-3">
           {images.map((src, index) => (
@@ -45,8 +45,8 @@ export function VillaGallery({ images, villaName }: VillaGalleryProps) {
               aria-label={`Show photo ${index + 1} of ${villaName}`}
               aria-current={index === activeIndex}
               className={cn(
-                "aspect-4/3 w-24 shrink-0 overflow-hidden rounded-lg border-2 transition-colors",
-                index === activeIndex ? "border-primary" : "border-transparent",
+                "aspect-4/3 w-24 shrink-0 overflow-hidden rounded-xl border-2 transition-colors",
+                index === activeIndex ? "border-aqua" : "border-transparent",
               )}
             >
               <img src={src} alt="" className="size-full object-cover" />

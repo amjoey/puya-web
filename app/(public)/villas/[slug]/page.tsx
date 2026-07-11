@@ -146,20 +146,22 @@ export default async function VillaDetailPage({
 
           <div className="flex flex-col gap-4 tablet:flex-row tablet:items-start tablet:justify-between">
             <div>
-              <h1 className="text-h2 font-bold text-foreground">{villa.name}</h1>
+              <h1 className="text-3xl font-medium text-ink tablet:text-4xl">
+                {villa.name}
+              </h1>
               <Badge variant="secondary" className="mt-2 gap-1.5">
                 <Users className="size-3.5" aria-hidden="true" />
                 รับได้ถึง {villa.capacity} คน
               </Badge>
             </div>
             <Button asChild size="lg" className="hidden tablet:inline-flex tablet:shrink-0">
-              <Link href={`/booking/${villa.slug}`}>จองเลย</Link>
+              <Link href={`/booking/${villa.slug}`}>เช็คราคา / จองเลย</Link>
             </Button>
           </div>
 
           <section>
-            <h2 className="text-h3 font-semibold text-foreground">รายละเอียด</h2>
-            <p className="mt-3 text-body text-muted-foreground">{villa.description}</p>
+            <h2 className="text-2xl font-medium text-ink">รายละเอียด</h2>
+            <p className="mt-3 text-body text-ink-soft">{villa.description}</p>
           </section>
 
           <section>
@@ -182,11 +184,11 @@ export default async function VillaDetailPage({
 
           <section>
             <div className="flex items-center justify-between">
-              <h2 className="text-h3 font-semibold text-foreground">รีวิว</h2>
+              <h2 className="text-2xl font-medium text-ink">รีวิว</h2>
               {averageRating !== null && (
                 <div className="flex items-center gap-2">
                   <RatingStars rating={averageRating} />
-                  <span className="text-caption text-muted-foreground">
+                  <span className="text-caption text-ink-soft">
                     {averageRating.toFixed(1)} / 5 ({villaReviews.length})
                   </span>
                 </div>
@@ -199,7 +201,7 @@ export default async function VillaDetailPage({
                 ))}
               </div>
             ) : (
-              <p className="mt-4 text-body text-muted-foreground">
+              <p className="mt-4 text-body text-ink-soft">
                 ยังไม่มีรีวิวสำหรับวิลล่านี้
               </p>
             )}
@@ -207,9 +209,9 @@ export default async function VillaDetailPage({
         </div>
 
         {/* Sticky mobile Booking CTA — see UI_UX_SPEC.md > Villa Detail Page > Booking CTA */}
-        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background p-4 tablet:hidden">
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/90 p-4 backdrop-blur-md tablet:hidden">
           <Button asChild size="lg" className="w-full">
-            <Link href={`/booking/${villa.slug}`}>จองเลย</Link>
+            <Link href={`/booking/${villa.slug}`}>เช็คราคา / จองเลย</Link>
           </Button>
         </div>
       </main>

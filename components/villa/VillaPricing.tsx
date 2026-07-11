@@ -5,21 +5,21 @@ import type { Villa } from "@/types/villa";
 export function VillaPricing({ villa }: { villa: Villa }) {
   return (
     <div>
-      <h2 className="text-h3 font-semibold text-foreground">ราคา</h2>
+      <h2 className="text-2xl font-medium text-ink">ราคา</h2>
       <dl className="mt-4 grid grid-cols-2 gap-4 tablet:max-w-sm">
-        <div className="rounded-lg border border-border bg-secondary p-4">
-          <dt className="text-caption text-muted-foreground">วันธรรมดา (อา.–พฤ.)</dt>
-          <dd className="mt-1 text-h3 font-semibold text-foreground">
+        <div className="rounded-2xl border border-line bg-paper p-4">
+          <dt className="text-caption text-ink-soft">วันธรรมดา (อา.–พฤ.)</dt>
+          <dd className="mt-1 text-2xl font-semibold text-ink">
             {formatTHB(villa.weekdayPrice)}
           </dd>
-          <dd className="text-caption text-muted-foreground">ต่อคืน</dd>
+          <dd className="text-caption text-ink-soft">ต่อคืน</dd>
         </div>
-        <div className="rounded-lg border border-border bg-secondary p-4">
-          <dt className="text-caption text-muted-foreground">วันหยุด (ศ.–ส.)</dt>
-          <dd className="mt-1 text-h3 font-semibold text-foreground">
+        <div className="rounded-2xl border border-line bg-paper p-4">
+          <dt className="text-caption text-ink-soft">วันหยุด (ศ.–ส.)</dt>
+          <dd className="mt-1 text-2xl font-semibold text-ink">
             {formatTHB(villa.weekendPrice)}
           </dd>
-          <dd className="text-caption text-muted-foreground">ต่อคืน</dd>
+          <dd className="text-caption text-ink-soft">ต่อคืน</dd>
         </div>
       </dl>
     </div>
