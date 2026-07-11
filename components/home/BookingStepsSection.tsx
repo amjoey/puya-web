@@ -16,7 +16,6 @@ const TRUST = [
   "PromptPay ปลอดภัย",
   "จองตรงกับเจ้าของ",
   "ยืนยันทาง LINE OA",
-  "Muslim-friendly",
 ] as const;
 
 export function BookingStepsSection() {
