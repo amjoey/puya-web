@@ -52,6 +52,11 @@ const jsonLd = {
   areaServed: ["สงขลา", "หาดใหญ่", "ปัตตานี", "ยะลา", "นราธิวาส"],
 };
 
+// ISR — prerender at build and refresh live villa data hourly. Public
+// reads now go through the cookieless client (see lib/supabase/public.ts),
+// so this page is no longer forced into per-request dynamic rendering.
+export const revalidate = 3600;
+
 export default function HomePage() {
   return (
     <>

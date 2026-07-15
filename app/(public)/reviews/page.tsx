@@ -25,6 +25,10 @@ export const metadata: Metadata = {
 // See PRD.md > 5. Reviews System. Both the list and the submission form
 // are real guest-facing data now — approved reviews from the database,
 // and a live villa list for the submission form's dropdown.
+// ISR — prerender + hourly refresh (cookieless public reads, see
+// lib/supabase/public.ts).
+export const revalidate = 3600;
+
 export default async function ReviewsPage() {
   const [{ data: reviews, error: reviewsError }, { data: villas, error: loadError }] =
     await Promise.all([

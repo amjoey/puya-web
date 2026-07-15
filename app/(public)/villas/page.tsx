@@ -23,6 +23,10 @@ export const metadata: Metadata = {
 };
 
 // See PRD.md > Functional Requirements > Villa Listing.
+// ISR — prerender + hourly refresh (cookieless public reads, see
+// lib/supabase/public.ts).
+export const revalidate = 3600;
+
 export default async function VillasPage() {
   const { data: villas, error: loadError } = await safeFetch(() => getActiveVillas(), []);
 
