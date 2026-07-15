@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 import type { Tables } from "@/types/database.types";
 import type { Villa } from "@/types/villa";
 
@@ -18,8 +19,10 @@ function mapVillaRow(row: Tables<"villas">): Villa {
   };
 }
 
+// Public read (Home, /villas, /villas/[slug]) — uses the cookieless anon
+// client so these pages can be statically prerendered / ISR.
 export async function getActiveVillas(): Promise<Villa[]> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("villas")
     .select("*")
@@ -30,8 +33,9 @@ export async function getActiveVillas(): Promise<Villa[]> {
   return (data ?? []).map(mapVillaRow);
 }
 
+// Public read (/villas/[slug]) — cookieless anon client, ISR-friendly.
 export async function getVillaBySlug(slug: string): Promise<Villa | null> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("villas")
     .select("*")

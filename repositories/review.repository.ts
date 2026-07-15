@@ -1,5 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 import type {
   Database,
   Tables,
@@ -21,10 +22,11 @@ function mapReviewRow(row: Tables<"reviews">): Review {
   };
 }
 
+// Public read (/villas/[slug]) — cookieless anon client, ISR-friendly.
 export async function listApprovedReviewsByVilla(
   villaId: string,
 ): Promise<Review[]> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("reviews")
     .select("*")
@@ -37,8 +39,9 @@ export async function listApprovedReviewsByVilla(
 }
 
 // Public reviews listing (/reviews) — approved reviews across all villas.
+// Cookieless anon client, ISR-friendly.
 export async function listApprovedReviews(): Promise<Review[]> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("reviews")
     .select("*")

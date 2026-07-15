@@ -1,5 +1,6 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 import { getVillaImagePublicUrl } from "@/lib/supabase/storage";
 import type { Database, Tables, TablesInsert } from "@/types/database.types";
 import type { VillaImage } from "@/types/villaImage";
@@ -17,8 +18,10 @@ function mapVillaImageRow(
   };
 }
 
+// Public read (Home, /villas, /villas/[slug]) — cookieless anon client,
+// ISR-friendly. Returns only the public storage URL, no session needed.
 export async function listVillaImagesByVilla(villaId: string): Promise<VillaImage[]> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("villa_images")
     .select("*")
