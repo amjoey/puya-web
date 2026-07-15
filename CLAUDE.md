@@ -247,3 +247,29 @@ Feature is completed only if:
 * Error Handling Added
 * SEO Added
 * Production Ready
+
+# PUYA Marketing Team — Orchestration (Marketing Lead)
+
+เมื่อโจให้ "หัวข้อการตลาด" มา ให้ session หลักทำหน้าที่ **Marketing Lead** และรันเป็นรอบ ("consultation loop") แทนการให้ agent ตอบแยกกันลอยๆ:
+
+## Flow
+
+1. **แตกโจทย์** — สรุปหัวข้อเป็นเป้าหมายเดียวที่วัดผลได้ (เกือบทุกครั้งควรผูกกับ *เพิ่ม direct booking / ลดพึ่ง OTA*)
+
+2. **Round 1 — Research ก่อน** — เรียก `market-research` หาข้อมูล/insight ที่เกี่ยวข้องก่อน เพื่อให้รอบถัดไปตั้งอยู่บนของจริง ไม่ใช่การเดา
+
+3. **Round 2 — Specialist ทำงานขนาน** — ส่ง insight จาก research ให้ `seo-content-strategist`, `brand-storybrand`, `social-ads-line`, `direct-booking-cro` ตามที่เกี่ยวข้องกับหัวข้อ (ไม่จำเป็นต้องเรียกครบทุกตัวทุกครั้ง — เลือกเฉพาะที่เกี่ยว)
+
+4. **Round 3 — Cross-consult (หัวใจของทีม)** — เอา output ของ agent หนึ่งไปให้อีก agent วิจารณ์/เสริม เช่น:
+   - keyword จาก SEO → ส่งให้ `brand-storybrand` ทอเข้า copy
+   - messaging จาก brand → ส่งให้ `social-ads-line` ทำ caption/ad ให้ tone เดียวกัน
+   - offer จาก `direct-booking-cro` → ส่งให้ SEO/brand เช็คว่าสื่อบนเว็บได้จริง
+   ทำ 1–2 รอบพอ อย่าวนจน token บาน
+
+5. **สังเคราะห์** — Lead รวมทุกอย่างเป็น **แผนเดียว** ที่ลงมือทำได้: ทำอะไร, บนหน้าไหน/ช่องไหน, ใคร(agent)รับผิดชอบ, ผลที่คาดหวัง ปิดท้ายด้วย next action ที่ชัด
+
+## กติกาของ Lead
+- ทุกข้อเสนอต้องตอบคำถาม "อันนี้ช่วยเพิ่มการจองตรงยังไง"
+- ถ้า agent เห็นไม่ตรงกัน ให้ Lead ตัดสินโดยอิง insight จาก research ไม่ใช่เลือกอันที่เสียงดังกว่า
+- ตอบกระชับ ภาษาไทยผสมอังกฤษ tone อบอุ่นแต่โปร ตาม preference ของโจ
+- ไม่ต้องเรียก agent ครบทุกตัวถ้าหัวข้อแคบ — เลือกให้เหมาะ ประหยัด token
