@@ -10,6 +10,11 @@ const supabaseHostname = process.env.NEXT_PUBLIC_SUPABASE_URL
 
 const nextConfig: NextConfig = {
   images: {
+    // Serve AVIF first (≈30% smaller than WebP for our hero/section photos),
+    // falling back to WebP then the original. next/image resizes from the
+    // source per device, so this format list is the main lever on delivered
+    // image bytes — and the LCP hero on the Home page rides on it.
+    formats: ["image/avif", "image/webp"],
     remotePatterns: supabaseHostname
       ? [
           {
