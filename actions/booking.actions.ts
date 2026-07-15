@@ -11,7 +11,11 @@ import {
   type BookingFormInput,
   type BookingStatusUpdateInput,
 } from "@/lib/validators/booking.schema";
-import { updateBooking as updateBookingRow } from "@/repositories/booking.repository";
+import { createServiceClient } from "@/lib/supabase/service";
+import {
+  findActiveBookingsByCheckIn,
+  updateBooking as updateBookingRow,
+} from "@/repositories/booking.repository";
 import { getActiveVillas } from "@/repositories/villa.repository";
 import { isRangeAvailable } from "@/services/availability.service";
 import {
@@ -20,7 +24,7 @@ import {
   GuestCountExceedsCapacityError,
   VillaNotFoundError,
 } from "@/services/booking.service";
-import type { Booking } from "@/types/booking";
+import type { Booking, BookingStatus, PaymentStatus } from "@/types/booking";
 
 export type CreateBookingResult =
   | { success: true; booking: Booking }
@@ -163,6 +167,78 @@ export async function searchAvailability(input: {
       success: false,
       error: "ไม่สามารถตรวจสอบวันว่างได้ กรุณาลองใหม่อีกครั้ง",
     };
+  }
+}
+
+const bookingLookupSchema = z.object({
+  phone: z.string().trim().min(1),
+  checkIn: z.string().date(),
+});
+
+export interface LookupBooking {
+  id: string;
+  villaName: string;
+  checkIn: string;
+  checkOut: string;
+  totalPrice: number;
+  paymentStatus: PaymentStatus;
+  bookingStatus: BookingStatus;
+}
+
+export type LookupBookingResult =
+  | { success: true; bookings: LookupBooking[] }
+  | { success: false; error: string };
+
+// Thai numbers reduce to the same 9 trailing digits whether written with a
+// leading 0, +66, or separators — so "081-234-5678", "0812345678" and
+// "+66 81 234 5678" all match the stored number.
+function phoneKey(raw: string): string {
+  return raw.replace(/\D/g, "").slice(-9);
+}
+
+// Guest self-service recovery: if someone closed the tab before uploading
+// their slip, they can find the booking again by phone + check-in date and
+// continue to the payment page. Reads via the service-role client (bookings
+// has no anon RLS select). Requiring BOTH fields keeps it from being a
+// phone-only enumeration of who has a booking.
+export async function lookupBooking(input: {
+  phone: string;
+  checkIn: string;
+}): Promise<LookupBookingResult> {
+  const parsed = bookingLookupSchema.safeParse(input);
+  if (!parsed.success) {
+    return { success: false, error: "กรุณากรอกเบอร์โทรและวันเช็คอินให้ถูกต้อง" };
+  }
+
+  try {
+    const bookings = await findActiveBookingsByCheckIn(
+      parsed.data.checkIn,
+      createServiceClient(),
+    );
+    const key = phoneKey(parsed.data.phone);
+    const matched = bookings.filter((booking) => phoneKey(booking.phone) === key);
+
+    if (matched.length === 0) {
+      return { success: true, bookings: [] };
+    }
+
+    const villas = await getActiveVillas();
+    const villaNameById = new Map(villas.map((villa) => [villa.id, villa.name]));
+
+    return {
+      success: true,
+      bookings: matched.map((booking) => ({
+        id: booking.id,
+        villaName: villaNameById.get(booking.villaId) ?? "วิลล่า",
+        checkIn: booking.checkIn,
+        checkOut: booking.checkOut,
+        totalPrice: booking.totalPrice,
+        paymentStatus: booking.paymentStatus,
+        bookingStatus: booking.bookingStatus,
+      })),
+    };
+  } catch {
+    return { success: false, error: "ไม่สามารถค้นหาการจองได้ กรุณาลองใหม่อีกครั้ง" };
   }
 }
 

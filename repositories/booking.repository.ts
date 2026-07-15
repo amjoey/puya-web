@@ -83,6 +83,26 @@ export async function listBookingsByIds(ids: string[]): Promise<Booking[]> {
   return (data ?? []).map(mapBookingRow);
 }
 
+// Active bookings (pending/confirmed) on a given check-in date. Backs the
+// guest booking-lookup flow (recover a payment link by phone + check-in);
+// a date has at most a couple of active bookings across the two villas, so
+// the caller filters by phone in memory. Reads via the passed service-role
+// client — bookings has no anon RLS select policy.
+export async function findActiveBookingsByCheckIn(
+  checkIn: string,
+  client: SupabaseClient<Database>,
+): Promise<Booking[]> {
+  const { data, error } = await client
+    .from("bookings")
+    .select("*")
+    .eq("check_in", checkIn)
+    .in("booking_status", ACTIVE_BOOKING_STATUSES)
+    .order("created_at", { ascending: false });
+
+  if (error) throw error;
+  return (data ?? []).map(mapBookingRow);
+}
+
 // Bookings that overlap [checkIn, checkOut) for a villa, excluding cancelled
 // bookings. Used by availability.service.ts to enforce the no-overlap rule
 // (see ARCHITECTURE.md Availability Logic). `client` defaults to the

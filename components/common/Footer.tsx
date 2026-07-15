@@ -8,6 +8,7 @@ const FOOTER_LINKS = [
   { label: "วิลล่า", href: "/villas" },
   { label: "รีวิว", href: "/reviews" },
   { label: "โปรโมชั่น", href: "/promotions" },
+  { label: "ค้นหาการจอง / ส่งสลิป", href: "/my-booking" },
   { label: "ติดต่อเรา", href: "/contact" },
 ] as const;
 
