@@ -9,16 +9,19 @@ import { SEO } from "@/lib/constants/seo";
 // Thai support). Exposed as CSS vars and mapped to font-display / font-body
 // Tailwind utilities in globals.css @theme. (next/font vars are named after
 // the font, not the utility, so they don't self-reference the theme token.)
+// Weights limited to those actually used in the UI. font-light (300) had
+// zero usages across the app, so it's dropped from both families to keep
+// the self-hosted font set and generated @font-face rules lean.
 const display = Anuphan({
   subsets: ["thai", "latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-anuphan",
   display: "swap",
 });
 
 const body = IBM_Plex_Sans_Thai({
   subsets: ["thai", "latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500", "600"],
   variable: "--font-ibm-plex-thai",
   display: "swap",
 });
