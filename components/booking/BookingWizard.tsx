@@ -13,6 +13,14 @@ import { GuestInfoForm } from "@/components/booking/GuestInfoForm";
 import { PriceCalculator } from "@/components/booking/PriceCalculator";
 import { VillaSelectStep } from "@/components/booking/VillaSelectStep";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Form } from "@/components/ui/form";
 import { bookingFormSchema, type BookingFormInput } from "@/lib/validators/booking.schema";
 import type { Villa } from "@/types/villa";
@@ -53,6 +61,7 @@ export function BookingWizard({
   );
   const [isPending, startTransition] = useTransition();
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   const form = useForm<BookingFormInput>({
     resolver: zodResolver(bookingFormSchema),
@@ -82,10 +91,23 @@ export function BookingWizard({
     setStep((current) => Math.max(current - 1, 1));
   }
 
-  function onSubmit(data: BookingFormInput) {
+  // Step 5: validate everything, then open the confirm dialog. The booking
+  // is NOT created here — the guest has to make a second, deliberate press
+  // inside the dialog. This prevents a single click (or an accidental Enter)
+  // from creating a booking and jumping to the payment page.
+  async function openConfirm() {
+    const valid = await form.trigger();
+    if (valid) {
+      setSubmitError(null);
+      setConfirmOpen(true);
+    }
+  }
+
+  // Fired only by the "ยืนยันและไปชำระเงิน" button inside the dialog.
+  function confirmBooking() {
     setSubmitError(null);
     startTransition(async () => {
-      const result = await createBooking(data);
+      const result = await createBooking(form.getValues());
       if (result.success) {
         router.push(`/booking/${result.booking.id}/payment`);
       } else {
@@ -99,7 +121,12 @@ export function BookingWizard({
       <div className="flex flex-col gap-8">
         <BookingStepper currentStep={step} />
 
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            if (step === 5) void openConfirm();
+          }}
+        >
           {step === 1 && <VillaSelectStep form={form} villas={villas} />}
           {step === 2 && selectedVilla && (
             <DateSelectStep form={form} villaId={selectedVilla.id} />
@@ -119,10 +146,6 @@ export function BookingWizard({
             <BookingSummary villa={selectedVilla} data={form.getValues()} />
           )}
 
-          {submitError && (
-            <p className="mt-4 text-body text-destructive">{submitError}</p>
-          )}
-
           <div className="mt-8 flex justify-between">
             {step > 1 ? (
               <Button type="button" variant="outline" onClick={goBack}>
@@ -136,12 +159,49 @@ export function BookingWizard({
                 ถัดไป
               </Button>
             ) : (
-              <Button type="submit" disabled={isPending}>
-                {isPending ? "กำลังส่ง..." : "ยืนยันการจอง"}
+              <Button type="button" onClick={openConfirm} disabled={isPending}>
+                ยืนยันการจอง
               </Button>
             )}
           </div>
         </form>
+
+        <Dialog
+          open={confirmOpen}
+          onOpenChange={(open) => {
+            if (isPending) return;
+            setConfirmOpen(open);
+            if (!open) setSubmitError(null);
+          }}
+        >
+          <DialogContent className="max-w-md">
+            <DialogHeader>
+              <DialogTitle>ยืนยันการจอง</DialogTitle>
+              <DialogDescription>
+                กรุณาตรวจสอบข้อมูลให้ถูกต้อง เมื่อกดยืนยัน ระบบจะสร้างการจองในสถานะ
+                &ldquo;รอชำระเงิน&rdquo; แล้วพาคุณไปหน้าชำระเงิน
+              </DialogDescription>
+            </DialogHeader>
+
+            {submitError && (
+              <p className="text-sm text-destructive">{submitError}</p>
+            )}
+
+            <DialogFooter>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setConfirmOpen(false)}
+                disabled={isPending}
+              >
+                ยกเลิก
+              </Button>
+              <Button type="button" onClick={confirmBooking} disabled={isPending}>
+                {isPending ? "กำลังส่ง..." : "ยืนยันและไปชำระเงิน"}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </Form>
   );
