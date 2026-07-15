@@ -28,15 +28,29 @@ const STEP_FIELDS: Record<number, (keyof BookingFormInput)[]> = {
 interface BookingWizardProps {
   villas: Villa[];
   initialVillaId: string;
+  // Prefilled from the Home page availability search (?checkIn&checkOut) so
+  // guests don't re-enter dates they already picked. Still re-validated by
+  // zod on "Next" and authoritatively re-checked server-side on submit.
+  initialCheckIn?: string;
+  initialCheckOut?: string;
 }
 
 // Orchestrates the 5-step booking flow — see PRD.md > 4. Booking System.
 // One react-hook-form instance spans all steps so values persist while
 // navigating back/forth; each step validates only its own fields before
 // allowing "Next". Final submit re-validates everything server-side.
-export function BookingWizard({ villas, initialVillaId }: BookingWizardProps) {
+export function BookingWizard({
+  villas,
+  initialVillaId,
+  initialCheckIn = "",
+  initialCheckOut = "",
+}: BookingWizardProps) {
   const router = useRouter();
-  const [step, setStep] = useState(1);
+  // Skip straight to the date step when both dates arrive prefilled from the
+  // Home search — the villa is already chosen and the dates are already set.
+  const [step, setStep] = useState(
+    initialCheckIn && initialCheckOut ? 2 : 1,
+  );
   const [isPending, startTransition] = useTransition();
   const [submitError, setSubmitError] = useState<string | null>(null);
 
@@ -44,8 +58,8 @@ export function BookingWizard({ villas, initialVillaId }: BookingWizardProps) {
     resolver: zodResolver(bookingFormSchema),
     defaultValues: {
       villaId: initialVillaId,
-      checkIn: "",
-      checkOut: "",
+      checkIn: initialCheckIn,
+      checkOut: initialCheckOut,
       customerName: "",
       phone: "",
       lineId: "",
